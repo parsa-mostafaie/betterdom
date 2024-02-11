@@ -41,10 +41,22 @@ async function script_init(url, callback) {
   return res;
 }
 
+// attr
+function attr(name, value) {
+  let e = this;
+  if (value != undefined) {
+    e.setAttribute(name, value);
+  } else {
+    return e.getAttribute(name);
+  }
+}
+
 // alias
 Element.prototype.on = Element.prototype.addEventListener;
 Element.prototype.appendHTML = Element.prototype.insertAdjacentElement;
 Element.prototype.sibs = sibs;
+Element.prototype.attr = attr;
+window.$ = document;
 
 // Auto Proxy
 function autoProxy(obj, handler) {

@@ -1,6 +1,7 @@
 /* Better Dom: v0.9.0 */
 
-let sibs = function (e) {
+let sibs = function () {
+  let e = this;
   // for collecting siblings
   let siblings = [];
   // if no parent, return no sibling
@@ -40,4 +41,17 @@ async function script_init(url, callback) {
   return res;
 }
 
-export default { getSiblings: sibs, ldScript: script_init };
+// alias
+Element.prototype.on = Element.prototype.addEventListener;
+Element.prototype.appendHTML = Element.prototype.insertAdjacentElement;
+Element.prototype.sibs = sibs;
+
+// Auto Proxy
+function autoProxy(obj, handler) {
+  obj = new Proxy(obj, handler);
+}
+
+export default {
+  ldScript: script_init,
+  autoProxy: autoProxy,
+};

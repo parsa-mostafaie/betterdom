@@ -51,6 +51,18 @@ function attr(name, value) {
   }
 }
 
+// memoize
+const memoize = (func) => {
+  const cache = {};
+  return (...args) => {
+    const argsKey = JSON.stringify(args);
+    if (!cache[argsKey]) {
+      cache[argsKey] = func(...args);
+    }
+    return cache[argsKey];
+  };
+};
+
 // alias
 Element.prototype.on = Element.prototype.addEventListener;
 Element.prototype.appendHTML = Element.prototype.insertAdjacentElement;
@@ -66,4 +78,5 @@ function autoProxy(obj, handler) {
 export default {
   ldScript: script_init,
   autoProxy: autoProxy,
+  memoize: memoize,
 };

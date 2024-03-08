@@ -69,6 +69,19 @@ Element.prototype.appendHTML = Element.prototype.insertAdjacentElement;
 Element.prototype.sibs = sibs;
 Element.prototype.attr = attr;
 window.$ = document;
+window.htmlspecialchars = function (text) {
+  var map = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+
+  return text.replace(/[&<>"']/g, function (m) {
+    return map[m];
+  });
+};
 
 // Auto Proxy
 function autoProxy(obj, handler) {

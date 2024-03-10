@@ -83,13 +83,7 @@ window.htmlspecialchars = function (text) {
   });
 };
 
-// Auto Proxy
-function autoProxy(obj, handler) {
-  obj = new Proxy(obj, handler);
-}
-
 export default {
   ldScript: script_init,
-  autoProxy: autoProxy,
   memoize: memoize,
 };

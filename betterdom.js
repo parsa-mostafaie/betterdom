@@ -83,7 +83,31 @@ window.htmlspecialchars = function (text) {
   });
 };
 
+const debounce = function (func, timeout = 300) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, timeout);
+  };
+};
+
+const throttle = function (func, delay) {
+  let lastExecTime = 0;
+
+  return function (...args) {
+    const now = Date.now();
+
+    if (now - lastExecTime >= delay) {
+      func.apply(this, args);
+    }
+  };
+};
+
 export default {
   ldScript: script_init,
-  memoize: memoize,
+  memoize,
+  throttle,
+  debounce,
 };

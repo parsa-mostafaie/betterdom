@@ -45,16 +45,14 @@ function loadscript(url) {
 }
 
 /**
-* Loads a script and calls the callback with the result. This is a wrapper around loadscript that does not require a callback so we don't have to worry about it
+* Loads a script and returns a promise. This is a wrapper around loadscript which does not require a url
 * 
-* @param url - URL of the script to load
-* @param callback - Function to call with the result of the script
+* @param url - The url of the script to load
 * 
-* @return { Promise } A promise that resolves to the result of the script or rejects if there was an
+* @return { Promise } The promise that resolves when the script
 */
-async function script_init(url, callback) {
+async function script_init(url) {
   let res = await loadscript(url);
-  callback(res);
   return res;
 }
 

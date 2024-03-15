@@ -25,11 +25,11 @@ let sibs = function () {
 };
 
 /**
-* Loads a script and returns a promise. This is a wrapper around loadScript. The promise resolves with " Script Loaded! " when the script is loaded and rejects with " Script Load Failed! " when the script fails.
+* Loads a script and returns a promise. This is a wrapper around loadScript.
 * 
-* @param url - The URL of the script to load. Must be absolute.
+* @param url - The URL of the script to load. This can be a relative or absolute URL.
 * 
-* @return { Promise } A promise that will resolve or reject depending on whether the script has loaded succesfully
+* @return { Promise } A promise that resolves when the script has loaded
 */
 function loadscript(url) {
   return new Promise((resolve, reject) => {
@@ -42,18 +42,6 @@ function loadscript(url) {
 
     document.body.appendChild(script);
   });
-}
-
-/**
-* Loads a script and returns a promise. This is a wrapper around loadscript which does not require a url
-* 
-* @param url - The url of the script to load
-* 
-* @return { Promise } The promise that resolves when the script
-*/
-async function script_init(url) {
-  let res = await loadscript(url);
-  return res;
 }
 
 /**
@@ -170,7 +158,7 @@ const throttle = function (func, delay) {
 };
 
 export default {
-  ldScript: script_init,
+  ldScript: loadscript,
   memoize,
   throttle,
   debounce,

@@ -15,9 +15,9 @@
   + *\[shorthand\]* `element.sibs` is shortway to get siblings of an element
   + *\[function\]* `window.htmlspecialchars` converts some predefined characters to HTML entities
   + *\[function\]* `bd.ldScript` Loads a script and returns a promise
-  + *\[function\]* `bg.memoize`
-  + *\[function\]* `bg.debounce`
-  + *\[function\]* `bg.throttle`
+  + *\[function\]* `bd.memoize`
+  + *\[function\]* `bd.debounce`
+  + *\[function\]* `bd.throttle`
 
 🙏 If you Finded an issue i will thank you to report this to me using github issues.
 

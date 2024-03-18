@@ -1,11 +1,17 @@
 # Better DOM
   > *Code Better And easier in js*
   ## Import
-    import bd from 'https://cdn.jsdelivr.net/gh/parsa-mostafaie/betterdom@master/betterdom.js';
-    
-    // Use BetterDom features
+  ```js
+  import bd from 'https://cdn.jsdelivr.net/gh/parsa-mostafaie/betterdom@master/betterdom.js';
+      
+  // Use BetterDom features
+  ```
   ## Important Note
-  You Can Also Import betterdom using `<script src='...'></script>` but this Maybe cause bugs.
+  You Can Also Import betterdom using :
+  ```html
+  <script src='...'></script>
+  ```
+  but this Maybe cause bugs.
 
   ## Features
   + *\[alias\]* `element.on(...)` is alias for `element.addEventListener(...)`

@@ -157,9 +157,89 @@ const throttle = function (func, delay) {
   };
 };
 
+export function dom(tag, props, ...childs) {
+  if (typeof tag == "function") return tag({ ...props }, childs);
+  if (typeof tag != "string") throw "invalid Tag prop";
+
+  let $e =
+    tag === ""
+      ? document.createDocumentFragment()
+      : document.createElement(tag);
+
+  let notAprop = ["style", "class"];
+
+  if (tag === "" && props) throw "Can't add props to fragment";
+
+  if (props) {
+    console.log(props);
+    for (let prop in props) {
+      if (typeof prop != "string") throw "invalid prop: " + prop;
+      let propVal = props[prop] || "";
+      if (prop.startsWith("on") || prop.startsWith("@")) {
+        let func;
+        if (typeof propVal == "function") {
+          func = propVal;
+        } else {
+          func = new Function("event", propVal);
+        }
+        $e.addEventListener(
+          prop.slice(prop.startsWith("@") ? 1 : 2),
+          func.bind($e)
+        );
+      } else if (prop == "className") {
+        $e.classList.add(...(Array.isArray(propVal) ? propVal : propVal(" ")));
+      } else if (prop == "css") {
+        let cssS = propVal;
+
+        if (typeof cssS == "string") {
+          $e.style.cssText = cssS;
+        } else if (typeof cssS == 'object') {
+          for (let cssProp in cssS) {
+            $e.style[cssProp] = cssS[cssProp];
+          }
+        } else {
+          throw "Invalid 'css' prop";
+        }
+      } else if (!notAprop.includes(prop)) {
+        $e.setprop(prop, propVal);
+      } else {
+        throw `Invalid prop: ${prop}`;
+      }
+    }
+  }
+  if (childs) {
+    for (let child of childs) {
+      if (typeof child == "string") {
+        let list = {
+          ">": "&gt",
+          "<": "&lt",
+          " ": "&nbsp",
+        };
+        $e.insertAdjacentHTML(
+          "beforeend",
+          child.replace(new RegExp("[>< ]"), (c) => {
+            return list[c];
+          })
+        );
+      } else {
+        $e.append(child);
+      }
+    }
+  }
+
+  return $e;
+}
+
+export function fragment(...childs) {
+  return dom("", null, ...childs);
+}
+
+
 export default {
   ldScript: loadscript,
   memoize,
   throttle,
   debounce,
+  createElement: dom,
+  fragment
 };

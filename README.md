@@ -24,6 +24,8 @@
   + *\[function\]* `bd.memoize`
   + *\[function\]* `bd.debounce`
   + *\[function\]* `bd.throttle`
+  + *\[function\]* `bd.createElement(tag, props, ...childs)` Create A DOM Element
+  + *\[function\]* `bd.fragment(...childs)` shorthand for `bd.createElement("", null, ...childs)`
 
 🙏 If you Finded an issue i will thank you to report this to me using github issues.
 

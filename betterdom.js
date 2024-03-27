@@ -171,7 +171,6 @@ export function dom(tag, props, ...childs) {
   if (tag === "" && props) throw "Can't add props to fragment";
 
   if (props) {
-    console.log(props);
     for (let prop in props) {
       if (typeof prop != "string") throw "invalid prop: " + prop;
       let propVal = props[prop] || "";
@@ -187,7 +186,7 @@ export function dom(tag, props, ...childs) {
           func.bind($e)
         );
       } else if (prop == "className") {
-        $e.classList.add(...(Array.isArray(propVal) ? propVal : propVal(" ")));
+        $e.classList.add(...(Array.isArray(propVal) ? propVal : propVal.split(" ")));
       } else if (prop == "css") {
         let cssS = propVal;
 
@@ -201,7 +200,7 @@ export function dom(tag, props, ...childs) {
           throw "Invalid 'css' prop";
         }
       } else if (!notAprop.includes(prop)) {
-        $e.setprop(prop, propVal);
+        $e.setAttribute(prop, propVal);
       } else {
         throw `Invalid prop: ${prop}`;
       }

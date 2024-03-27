@@ -1,8 +1,3 @@
-> [!WARNING]  
-> Recently, We Finded Few Bugs in Current version of betterdom; Please wait to we fix that bugs!
-> <br/> This May take few weeks!📅, because now we are working on [noreact](https://github.com/parsa-mostafaie/noreact).
-> <br/> **Notice:** If Bugs fixs then we remove this message
-
 # Better DOM
   > *Code Better And easier in js*
   ## Import
